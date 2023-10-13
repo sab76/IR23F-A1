@@ -29,4 +29,9 @@ def computeWordFrequencies(tokens):
     freq = defaultdict(int) #using default dict so I don't have to check if I have the token already in my hashmap (not that it really matters, I can do an if else)
     for token in tokens:
         freq[token] += 1  #much count very wow, goes through my list and ups the count in my dict
-    return freq
+    return dict(freq)  #returning a regular dictionary instead of defaultdict just in case, I saw someone on eddiscussion say something about that
+    
+def printFreq(frequencies):
+    sorted_tokens = sorted(frequencies.items(), key=lambda x: (-x[1], x[0])) #dictionary is converted into a list then sorted by frequency first in descending order then by ascending alphabetical order if they have the same frequency
+    for token, freq in sorted_tokens:
+        print(f"{token}\t{freq}")
