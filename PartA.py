@@ -6,6 +6,15 @@ import sys
 def tokenize(file_path):
     path = Path(file_path) #using pathlib cuz my friend said it's better than os.path in general
     
+    #doing some basic error checking to check if the file given exists and that it's a file
+    if not path.exists():
+        print(f"File '{file_path}' does not exist.")
+        sys.exit()
+
+    if not path.is_file():
+        print(f"'{file_path}' is not a file.")
+        sys.exit()
+
     tokens = []
     with open(path, 'r', encoding='utf-8', errors='ignore') as file: #assuming English based text files, I'm just going to ignore errors with non utf-8 characters and skip over them
         for line in file: #assuming my text file doesn't have crazy long lines...
